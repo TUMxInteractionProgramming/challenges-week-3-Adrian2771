@@ -22,17 +22,6 @@ button, strong {
     text-transform: uppercase;
 }
 
-
-
-/* APP BAR */
-
-/* #4 #sweat address both #app-bar s */
-h1 {
-    background-color: #3F51B5;
-    color: white;
-}
-
-
 /* CHANNELS LIST */
 
 /* #4 #sweat #channels */
@@ -67,7 +56,7 @@ li img {
 /* TAB BAR */
 
 /* #4 #sweat #tab-bar */
-#tab-bar {
+#tab-bar, #chat-bar {
     /* #3 #tab-bar #container should be white */
     background-color: white;
     /* #3 #tab-bar #container has all buttons centered */
@@ -75,7 +64,8 @@ li img {
 }
 
 /* #4 add styles to #tab-bar #buttons */
-#tab-bar button {
+/* code reuse */
+#tab-bar button, #chat-bar button {
     background-color: white;
     border: none;
     font-size: 13px;
@@ -115,6 +105,8 @@ li img {
 
 .message h3 {
     font-size: medium;
+    display:flex;
+    justify-content: space-between;
 }
 
 .message h3 em {
@@ -130,12 +122,16 @@ li img {
 .message p {
     background-color: white;
     padding: 16px;
+    position: relative;
 }
-
+/* the +5 min buttons are now contained in the message paragraphs, next to their right side */
 .message button {
     background-color: #CDDC39;
     color: black;
     text-transform: uppercase;
+    position:absolute;
+    bottom: 8px;
+    right: 8px;
 }
 
 /* #4 left align own #messages using #margins */
@@ -143,3 +139,95 @@ li img {
     margin-left: 17.5%;
 }
 
+/* The code for challenge no.5 starts from here */
+/* General styles for layout splitting */
+#channels, #chat{
+  position:absolute;
+  top:0px;
+}
+
+#channels{
+  left:0px;
+  width:40%;
+}
+
+#chat{
+  right:0px;
+  width:60%;
+}
+/* The scroll bar can only move the channel list and the chat message stack*/
+#tab-bar, h1{
+  position:fixed;
+  z-index: 1;
+}
+
+/* code reuse */
+#tab-bar, #chat-bar{
+  bottom:0px;
+  width:40%;
+  display:flex;
+  justify-content: space-around;
+}
+
+#channels ul, #chat .message.own{
+  position:relative;
+  margin-top:64px;
+}
+
+h1 {
+    background-color: #3F51B5;
+    color: white;
+    height:64px;
+    line-height: 64px;
+    padding-left:72px;
+    width:100%;
+}
+
+h1 img{
+  position:absolute;
+  bottom:0px;
+  left:16px;
+}
+
+li{
+  position:relative;
+  line-height: 16px;
+}
+/* channel names and their stars stick to opposite sides */
+.channel-meta{
+  font-size:28px;
+  font-weight: bold;
+  position:absolute;
+  right:16px;
+}
+
+
+#chat-bar #emojis{
+  background-color:#fff;
+  width:200px;
+  height:200px;
+  font-size:28px;
+  text-align:left;
+  overflow:auto;
+  border:1px solid black;
+  margin-left:20px;
+}
+
+/*cancelling code reuse*/
+#chat-bar{
+  display:block;
+  position:relative;
+  height: auto;
+  background-color:initial;
+  top:-230px;
+}
+
+#chat-bar #emojis-button{
+  position: relative;
+  left:-125px;
+  top:230px;
+  height:auto;
+  padding:0px;
+  background-color:initial;
+  width:auto;
+}
